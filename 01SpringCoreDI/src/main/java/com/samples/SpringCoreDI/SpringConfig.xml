@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- <bean name="emp" class="com.samples.SpringCoreDI.Employee">
+		<property name="id">
+			<value>23</value>
+		</property>
+		<property name="name">
+			<value>John</value>
+		</property>
+		       ************or************
+		<bean name="emp" class="com.samples.SpringCoreDI.Employee">
+		<property name="id" value='21'/>
+		<property name="name" value="suba"/>
+		 ************or************ -->
+		 <bean name="emp" class="com.samples.SpringCoreDI.Employee" p:id='21' p:name="suba">
+		 <property name="address">
+			<bean class="com.samples.SpringCoreDI.Address"
+				p:houseNumber="123" p:street="main street" p:city="NY" />
+		</property>
+	</bean>
+		 <bean name='hos' class="com.samples.SpringCoreDI.Hospital" p:name="global hospital">
+		 <property name="patients">
+		 <list>
+		 <value>John</value>
+		 <value>king</value>
+		 </list>
+		 </property>
+		 </bean>
+		 
+		 <bean name='cus' class="com.samples.SpringCoreDI.Customer" p:id="37">
+		<property name="products">
+			<map>
+				<entry key="100" value="IPhone" />
+				<entry key="200" value="Laptop" />
+				<entry key="300" value="Mobile" />
+				<entry key="400" value="Mouse" />
+				<entry key="500" value="Keyboard" />
+			</map>
+		 </property>	
+		 </bean>
+		 
+		<bean name="cardealer"
+		class="com.samples.SpringCoreDI.CarDealer">
+		<property name="name" value="ABC Motors" />
+		<property name="models">
+			<set>
+				<value>Hyundai</value>
+				<value>Honda</value>
+				<value>Maruti</value>
+				<value>Hyundai</value>
+			</set>
+		</property>
+	</bean>
+		
+			<bean name='items' class="com.samples.SpringCoreDI.Item" p:id='1' p:name="apple" p:price='50' p:quantity='5'/>
+			<bean name="shoppingcart" class="com.samples.SpringCoreDI.ShoppingCart" p:itemobj-ref="items"/>
+
+			<bean name='score' class='com.samples.SpringCoreDI.Scores' p:math='99' p:chemistry='95'/>
+			<bean name='stu' class='com.samples.SpringCoreDI.Students' p:scoreobj-ref="score"/>
+			
+			<bean name="countries"
+		class="com.samples.SpringCoreDI.CountriesAndLanguages">
+		<property name="countryLanguages">
+			<props>
+				<prop key="USA">English</prop>
+				<prop key="Canada">French</prop>
+				<prop key="Germany">German</prop>
+				<prop key="Japan">Japanese</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- <bean name="patient" class="com.samples.SpringCoreDI.Patient" p:id="11" init-method="methodOne" destroy-method="methodTwo" /> -->
+	
+	<bean name="patient" class="com.samples.SpringCoreDI.Patient"
+		p:id="11" />
+	
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />		<!--aware of pre & post construct annotations-->
+		
+</beans>
